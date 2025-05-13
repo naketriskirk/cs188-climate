@@ -1,3 +1,15 @@
+# To Run
+
+npm run build
+
+go to chrome://extensions/
+
+turn on development mode, and click load unpacked, uploading the build folder from the cs188-climate repo
+
+check out the extention from the extensions bar :)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
