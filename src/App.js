@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import PopupContainer from './PopupContainer';
+import CompanyNames from './components/CompanyNames';
+import CompanyScore from './components/CompanyScore';
 import React from 'react';
+import PopupContainer from './PopupContainer';
 /* global chrome */
 
 
@@ -26,6 +28,7 @@ React.useEffect(() => {
   return (
     <div className="App">
     <PopupContainer website_name={pageTitle} avg_rating={30} />
+    <CompanyScore />
     </div>
   );
 }
