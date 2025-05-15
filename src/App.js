@@ -24,7 +24,7 @@ React.useEffect(() => {
 
   return (
     <div className="App">
-    <PopupContainer website_name={pageTitle} />
+    <PopupContainer website_name={pageTitle} avg_rating={30} />
     </div>
   );
 }
