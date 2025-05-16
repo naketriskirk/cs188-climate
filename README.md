@@ -1,12 +1,19 @@
+# Interaction Flow
+1. When the user opens an e-commerce website, there will be a button on the top right that indicates the average sustainability score
+2. Clicking on the button, a popup opens with induvidual scores of different categories
+3. Under each category, the user can read more information on what led to the given score
+4. Clicking off of the pop up will close it, but the button will persistently remain on the screen
+
+
 # To Run
 
 npm run build
 
 go to chrome://extensions/
 
-turn on development mode, and click load unpacked, uploading the build folder from the cs188-climate repo
+Turn on development mode, and click load unpacked, uploading the build folder from the cs188-climate repo
 
-check out the extention from the extensions bar :)
+Check out the extension from the extensions bar :)
 
 
 
