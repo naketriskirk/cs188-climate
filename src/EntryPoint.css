@@ -1,0 +1,123 @@
+.entry-point-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: white;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.corner-dot-wrapper {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 270px;
+  top: 10px;
+}
+
+.content-column {
+  width: 246px;
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.label {
+  align-self: stretch;
+  color: black;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.not-found {
+  align-self: stretch;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.search-bar {
+  align-self: stretch;
+  padding: 4px 12px;
+  border-radius: 24px;
+  outline: 1px #A1A1A1 solid;
+  outline-offset: -1px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.search-icon-shadow {
+  width: 0.84px;
+  height: 0.67px;
+  position: absolute;
+  left: 12.08px;
+  top: 23.14px;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.search-text {
+  color: #A1A1A1;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.variant2-content {
+  width: 246px;
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.score-badge {
+  padding: 12.15px 24.3px;
+  background: #FF0000;
+  box-shadow: 0px 0px 5.4px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16.2px;
+}
+
+.score-text {
+  align-self: stretch;
+  color: white;
+  font-size: 38.88px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
