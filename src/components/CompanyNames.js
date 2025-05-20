@@ -7,7 +7,7 @@ import axios from 'axios';
             method: 'GET',
             url: 'https://gaialens-company-names.p.rapidapi.com/companynames',
             headers: {
-                'x-rapidapi-key': 'b6023dda95msh5551fee874c5d4ap14c30bjsn872f7a5c88f6',
+                'x-rapidapi-key': 'c891c10464mshb9caeab8511487dp10b501jsn2d14fb3b860bs',
                 'x-rapidapi-host': 'gaialens-company-names.p.rapidapi.com',
                 'Content-Type': 'text'
             }
