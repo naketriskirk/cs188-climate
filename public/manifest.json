@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "My React Chrome Extension",
+  "name": "Climate Chrome Extension",
   "version": "1.0",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],

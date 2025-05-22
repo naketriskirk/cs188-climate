@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  border-radius: 12px;
+  width: 500px;
+  height: fit-content;
 }
 
 

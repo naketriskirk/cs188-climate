@@ -3,7 +3,7 @@ import './App.css';
 import CompanyNames from './components/CompanyNames';
 import CompanyScore from './components/CompanyScore';
 import React from 'react';
-import PopupContainer from './PopupContainer';
+import PopupContainer from './components/PopupContainer';
 /* global chrome */
 
 
@@ -27,7 +27,7 @@ React.useEffect(() => {
 
   return (
     <div className="App">
-    <PopupContainer website_name={pageTitle} avg_rating={30} />
+    {/* <PopupContainer website_name={pageTitle} avg_rating={30} /> */}
     <CompanyScore />
     </div>
   );
