@@ -1,32 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PopupContainer from './PopupContainer';
-import fetchCompanyNames from './CompanyNames';
+// Removed unused fetchCompanyNames import
 import './CompanyScore.css';
 
 const CompanyScore = () => {
-  const [companyNames, setCompanyNames] = useState([]);
-  const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [inputBrand, setInputBrand] = useState('');
   const [brandData, setBrandData] = useState([]);
-  const [score, setScore] = useState(null);
+  // Removed unused score state
   const [error, setError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  // Removed unused pageTitle state
 
   useEffect(() => {
-    const filtered = companyNames.filter((company) =>
-      company.companyname.toLowerCase().includes(inputBrand.toLowerCase())
-    );
-    setFilteredCompanies(filtered);
-  }, [inputBrand, companyNames]);
+    if (typeof window !== 'undefined' && window.chrome && window.chrome.tabs) {
+      window.chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0] && tabs[0].url) {
+          const origin = new URL(tabs[0].url).origin;
+          let website = origin.replace('https://', '').replace('www.', '').replace(/\.com$/, '');
+          console.log("Website Name:", website);
+          handleAnalyze(website);
+        }
+      });
+    }
+  }, []);
 
-  const handleAnalyze = async () => {
-    if (!inputBrand) {
+  const handleAnalyze = async (brandName) => {
+    console.log("Analyzing brand:", brandName);
+    if (!brandName) {
       setError('Please enter a brand name.');
       return;
     }
 
-    const formattedBrand = inputBrand.trim().toLowerCase();
+    const formattedBrand = brandName.trim().toLowerCase();
+    console.log("Formatted Brand Name:", formattedBrand);
 
     setError(null);
     setBrandData([]);
@@ -47,8 +54,8 @@ const CompanyScore = () => {
       console.log("Brand Data:", responseData.data);
       setShowPopup(true);
     } catch (err) {
-      setError('Failed to fetch company scores');
-      console.error(err);
+      setShowPopup(false);
+      console.error("Error fetching brand data:", err);
     }
   };
 
@@ -71,7 +78,7 @@ const CompanyScore = () => {
           className="search-bar"
         />
       </div>
-      <button onClick={handleAnalyze} class="analyze-button">
+      <button onClick={() => handleAnalyze(inputBrand)} class="analyze-button">
         Analyze
       </button>
     </div>
