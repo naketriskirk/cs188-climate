@@ -1,4 +1,6 @@
 .containerStyle {
+    display: flex;
+    flex-direction: row;
     padding: 24px;
     background: #fff;
     border-radius: 12px;
@@ -15,7 +17,30 @@
 
 .score-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.subscore-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+.subheader {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+}
+
+.paragraph {
+    font-size: 14px;
+    color: #555;
 }
