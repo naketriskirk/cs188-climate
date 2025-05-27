@@ -45,6 +45,19 @@ const CompanyScore = () => {
       const responseData = await axios.request(response);
       setBrandData(responseData.data);
       console.log("Brand Data:", responseData.data);
+
+      if (localStorage.getItem("overallScore") === null) {
+        // key does not exist yet, first entry
+        localStorage.setItem("overallScore", "0");
+      }
+
+      const strScore = localStorage.getItem("overallScore");
+      let numScore = Number(strScore);
+      let numWebsiteScore = Number(responseData.data.overallRating.score_out_of_100);
+      let accumScore = (numScore + numWebsiteScore) / 2;
+      localStorage.setItem('overallScore', JSON.stringify(accumScore));
+      console.log("localStorage: ", localStorage);
+
       setShowPopup(true);
     } catch (err) {
       setError('Failed to fetch company scores');
