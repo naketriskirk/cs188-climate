@@ -1,18 +1,39 @@
 .containerStyle {
     display: flex;
     flex-direction: row;
-    padding: 24px;
+    /* padding: 24px; */
     background: #fff;
-    border-radius: 12px;
-    box-sizing: border-box;
 }
 
 .overall-score-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding: 0px 40px 0px 40px;
+    
+}
+
+.overall-score-container.score-low {
+    background-color: #8F0000;
+    color: white;
+}
+.overall-score-container.score-medium-low {
+    background-color: #FFBC7A;
+    color: black;
+}
+.overall-score-container.score-medium {
+    background-color: #FBDF45;
+    color: black;
+}
+.overall-score-container.score-medium-high {
+    background-color: #C8F85F;
+    color: black;
+}
+.overall-score-container.score-high {
+    background-color: #007D38;
+    color: black;
 }
 
 .score-container {
@@ -20,27 +41,43 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    column-gap: 40px;
 }
+
 
 .subscore-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     margin-top: 16px;
+    padding: 18px 20px 18px 20px;
+    /* align-items: flex-start; */
 }
 
 .header {
+    font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: 600;
-    color: #333;
+    padding-left: 70px 24px 70px;
+
 }
 .subheader {
-    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
     font-weight: 500;
-    color: #666;
+    color: black;
+    margin: 0px;
 }
 
 .paragraph {
-    font-size: 14px;
-    color: #555;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: black
+}
+
+.score-value {
+font-family: 'Inter', sans-serif;
+  margin-left: auto;
+  text-align: right;
+  min-width: 40px;
+  font-size: 18px;
 }
