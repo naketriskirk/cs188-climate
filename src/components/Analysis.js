@@ -21,8 +21,19 @@ const extractSummaries = (htmlString) => {
     const animalsSummary = animalsStart !== -1 && overallStart !== -1
         ? htmlString.substring(animalsStart, overallStart)
         : '';
+    
+    // gets only the list
+    const extractUl = (str) => {
+    const match = str.match(/<ul[\s\S]*?<\/ul>/i);
+    return match ? match[0] : '';
+    };
 
-    return [planetSummary, peopleSummary, animalsSummary];
+    return [
+        extractUl(planetSummary),
+        extractUl(peopleSummary),
+        extractUl(animalsSummary)
+    ];
+     
 };
 
 const AnalysisPage = ({data}) => {
