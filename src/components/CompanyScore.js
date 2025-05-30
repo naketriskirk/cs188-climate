@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PopupContainer from './PopupContainer';
-// Removed unused fetchCompanyNames import
+import AnalysisPage from './Analysis';
 import './CompanyScore.css';
 
 const CompanyScore = () => {
@@ -18,7 +17,6 @@ const CompanyScore = () => {
         if (tabs[0] && tabs[0].url) {
           const origin = new URL(tabs[0].url).origin;
           let website = origin.replace('https://', '').replace('www.', '').replace(/\.com$/, '');
-          console.log("Website Name:", website);
           handleAnalyze(website);
         }
       });
@@ -26,14 +24,12 @@ const CompanyScore = () => {
   }, []);
 
   const handleAnalyze = async (brandName) => {
-    console.log("Analyzing brand:", brandName);
     if (!brandName) {
       setError('Please enter a brand name.');
       return;
     }
 
     const formattedBrand = brandName.trim().toLowerCase();
-    console.log("Formatted Brand Name:", formattedBrand);
 
     setError(null);
     setBrandData([]);
@@ -51,7 +47,6 @@ const CompanyScore = () => {
 
       const responseData = await axios.request(response);
       setBrandData(responseData.data);
-      console.log("Brand Data:", responseData.data);
 
       if (localStorage.getItem("overallScore") === null) {
         // key does not exist yet, first entry
@@ -63,7 +58,6 @@ const CompanyScore = () => {
       let numWebsiteScore = Number(responseData.data.overallRating.score_out_of_100);
       let accumScore = (numScore + numWebsiteScore) / 2;
       localStorage.setItem('overallScore', JSON.stringify(accumScore));
-      console.log("localStorage: ", localStorage);
 
       setShowPopup(true);
     } catch (err) {
@@ -73,7 +67,7 @@ const CompanyScore = () => {
   };
 
   if (showPopup && brandData) {
-    return <PopupContainer data={brandData} />;
+    return <AnalysisPage data={brandData} />;
   }
 
   return (

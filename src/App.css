@@ -3,9 +3,8 @@
 
 .App {
   text-align: center;
-  width: 400px;
+  width: fit-content;
   height: fit-content;
-
 }
 
 
