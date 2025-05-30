@@ -7,6 +7,12 @@
   "action": {
     "default_popup": "index.html"
   },
+  "icons": {
+    "16": "logo.png",
+    "32": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
   "description": "Chrome extension with React UI",
   "background": {
     "service_worker": "background.js"
