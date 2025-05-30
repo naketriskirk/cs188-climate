@@ -45,7 +45,7 @@ const AnalysisPage = ({data}) => {
             <div class={`overall-score-container ${scoreClass}`}>
                 <div class="header">{ data.name }</div>
                 <div class="overall-score">{ data.overallRating.score_out_of_100 }</div>
-                <div class="source">Source: <a class="url" href={`https://directory.goodonyou.eco/brand/${encodeURIComponent(data.name.toLowerCase())}`} target="_blank" rel="noopener noreferrer">Good On You</a></div>
+                <div class="source">Source: <a class={`url ${scoreClass}`} href={`https://directory.goodonyou.eco/brand/${encodeURIComponent(data.name.toLowerCase())}`} target="_blank" rel="noopener noreferrer">Good On You</a></div>
             </div>
 
             <div class="subscore-container">
