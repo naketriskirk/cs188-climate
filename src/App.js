@@ -2,9 +2,6 @@ import './App.css';
 import CompanyScore from './components/CompanyScore';
 import React from 'react';
 import AnalysisPage from './components/Analysis';
-/* global chrome */
-
-
 
 function App() {
   const [pageTitle, setPageTitle] = React.useState('');
@@ -21,10 +18,9 @@ React.useEffect(() => {
   }
 }, []);
 
-
   return (
     <div className="App">
-    <CompanyScore />
+      <CompanyScore />
     </div>
   );
 }
