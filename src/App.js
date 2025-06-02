@@ -29,7 +29,7 @@ React.useEffect(() => {
     setHistory(prev => prev.slice(0, -1));
   };
 
-  const lessThan = "<";
+
   return (
     <div className="App">
       {currentPage === 'score' && (
@@ -51,10 +51,5 @@ React.useEffect(() => {
       )}
     </div>
   );
-  // return (
-  //   <div className="App">
-  //     <CompanyScore />
-  //   </div>
-  // );
 }
 export default App;
