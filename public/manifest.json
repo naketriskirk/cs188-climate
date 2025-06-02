@@ -1,9 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Climate Chrome Extension",
+  "name": "Verdant",
   "version": "1.0",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "index.html"
   },
@@ -13,19 +18,19 @@
     "48": "logo.png",
     "128": "logo.png"
   },
-  "description": "Chrome extension with React UI",
+  "description": "Verdant is a Chrome extension that analyzes and displays a brand's environmental impact while you shop online.",
+
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
     }
   ]
 }
-
-
-
-
-

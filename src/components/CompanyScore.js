@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PopupContainer from './PopupContainer';
-import fetchCompanyNames from './CompanyNames';
+import AnalysisPage from './Analysis';
 import './CompanyScore.css';
 
 const CompanyScore = () => {
-  const [companyNames, setCompanyNames] = useState([]);
-  const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [inputBrand, setInputBrand] = useState('');
   const [brandData, setBrandData] = useState([]);
-  const [score, setScore] = useState(null);
+  // Removed unused score state
   const [error, setError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  // Removed unused pageTitle state
 
   useEffect(() => {
-    const filtered = companyNames.filter((company) =>
-      company.companyname.toLowerCase().includes(inputBrand.toLowerCase())
-    );
-    setFilteredCompanies(filtered);
-  }, [inputBrand, companyNames]);
+    if (typeof window !== 'undefined' && window.chrome && window.chrome.tabs) {
+      window.chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0] && tabs[0].url) {
+          const origin = new URL(tabs[0].url).origin;
+          let website = origin.replace('https://', '').replace('www.', '').replace(/\.com$/, '');
+          handleAnalyze(website);
+        }
+      });
+    }
+  }, []);
 
-  const handleAnalyze = async () => {
-    if (!inputBrand) {
+  const handleAnalyze = async (brandName) => {
+    if (!brandName) {
       setError('Please enter a brand name.');
       return;
     }
 
-    const formattedBrand = inputBrand.trim().toLowerCase();
+    const formattedBrand = brandName.trim().toLowerCase();
 
     setError(null);
     setBrandData([]);
@@ -44,7 +47,6 @@ const CompanyScore = () => {
 
       const responseData = await axios.request(response);
       setBrandData(responseData.data);
-      console.log("Brand Data:", responseData.data);
 
       if (localStorage.getItem("overallScore") === null) {
         // key does not exist yet, first entry
@@ -56,17 +58,16 @@ const CompanyScore = () => {
       let numWebsiteScore = Number(responseData.data.overallRating.score_out_of_100);
       let accumScore = (numScore + numWebsiteScore) / 2;
       localStorage.setItem('overallScore', JSON.stringify(accumScore));
-      console.log("localStorage: ", localStorage);
 
       setShowPopup(true);
     } catch (err) {
-      setError('Failed to fetch company scores');
-      console.error(err);
+      setShowPopup(false);
+      console.error("Error fetching brand data:", err);
     }
   };
 
   if (showPopup && brandData) {
-    return <PopupContainer data={brandData} />;
+    return <AnalysisPage data={brandData} />;
   }
 
   return (
@@ -84,7 +85,7 @@ const CompanyScore = () => {
           className="search-bar"
         />
       </div>
-      <button onClick={handleAnalyze} class="analyze-button">
+      <button onClick={() => handleAnalyze(inputBrand)} class="analyze-button">
         Analyze
       </button>
     </div>
