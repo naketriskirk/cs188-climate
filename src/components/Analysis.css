@@ -182,3 +182,25 @@
         padding-left: 30px;
     }
 }
+
+.back-button-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+.back-button-overlay:hover {
+  background: #f0f0f0;
+}

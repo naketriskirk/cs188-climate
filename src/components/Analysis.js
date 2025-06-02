@@ -3,8 +3,8 @@ import planetIcon from '../assets/planet_icon.svg';
 import peopleIcon from '../assets/people_icon.svg';
 import animalsIcon from '../assets/animals_icon.svg';
 import dropdownIcon from '../assets/dropdown_icon.svg';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+/* global chrome */
 
 const extractSummaries = (htmlString) => {
     const planetStart = htmlString.indexOf("Our “Planet” rating");
@@ -25,7 +25,7 @@ const extractSummaries = (htmlString) => {
     return [planetSummary, peopleSummary, animalsSummary];
 };
 
-const AnalysisPage = ({data}) => {
+const AnalysisPage = ({data, goBack}) => {
     let scoreClass = '';
     if (data.overallRating.score_out_of_100 < 20) scoreClass = 'score-low';
     else if (data.overallRating.score_out_of_100 < 40) scoreClass = 'score-medium-low';
@@ -40,34 +40,45 @@ const AnalysisPage = ({data}) => {
         setExpanded((prev) => prev.map((val, i) => (i === index ? !val : val)));
     };
 
+    useEffect(() => {
+        if (chrome && chrome.storage && data.overallRating.score_out_of_100 != null) {
+        chrome.storage.local.set({ companyScore: data.overallRating.score_out_of_100 }, () => {
+            console.log('Company score saved to storage:', data.overallRating.score_out_of_100);
+        });
+        }
+    }, [data.overallRating.score_out_of_100]);
+
+    const lessThan = "<";
     return (
-        <div class="analysis-content"> 
-            <div class={`overall-score-container ${scoreClass}`}>
-                <div class="header">{ data.name }</div>
-                <div class="overall-score">{ data.overallRating.score_out_of_100 }</div>
-                <div class="source">Source: <a class="url" href={`https://directory.goodonyou.eco/brand/${encodeURIComponent(data.name.toLowerCase())}`} target="_blank" rel="noopener noreferrer">Good On You</a></div>
+        <div className="analysis-content"> 
+            <button className="back-button-overlay" onClick={goBack}>{lessThan}</button>
+
+            <div className={`overall-score-container ${scoreClass}`}>
+                <div className="header">{ data.name }</div>
+                <div className="overall-score">{ data.overallRating.score_out_of_100 }</div>
+                <div className="source">Source: <a className="url" href={`https://directory.goodonyou.eco/brand/${encodeURIComponent(data.name.toLowerCase())}`} target="_blank" rel="noopener noreferrer">Good On You</a></div>
             </div>
 
-            <div class="subscore-container">
+            <div className="subscore-container">
                 {[0, 1, 2].map((index) => (
-                    <div class="section" key={index}>
-                        <div class="score-container">
-                            <div class="label-container">
+                    <div className="section" key={index}>
+                        <div className="score-container">
+                            <div className="label-container">
                                 <img
-                                    class="icon"
+                                    className="icon"
                                     src={index === 0 ? planetIcon : index === 1 ? peopleIcon : animalsIcon}
                                     alt={index === 0 ? "Planet Icon" : index === 1 ? "People Icon" : "Animals Icon"}
                                 />
-                                <div class="label">{index === 0 ? 'Planet' : index === 1 ? 'People' : 'Animals'}</div>
+                                <div className="label">{index === 0 ? 'Planet' : index === 1 ? 'People' : 'Animals'}</div>
                             </div>
-                            <div class="score-value">{index === 0 ? data.environment.score_out_of_100 : index === 1 ? data.labour.score_out_of_100 : data.animal.score_out_of_100}</div>
+                            <div className="score-value">{index === 0 ? data.environment.score_out_of_100 : index === 1 ? data.labour.score_out_of_100 : data.animal.score_out_of_100}</div>
                         </div>
 
-                        <div class="read-more-container" onClick={() => toggleSummary(index)} style={{ cursor: 'pointer' }}>
-                            <div class="read-more-row">
-                                <div class="read-more-label">{expanded[index] ? 'Show Less' : 'Read More'}</div>
+                        <div className="read-more-container" onClick={() => toggleSummary(index)} style={{ cursor: 'pointer' }}>
+                            <div className="read-more-row">
+                                <div className="read-more-label">{expanded[index] ? 'Show Less' : 'Read More'}</div>
                                 <img
-                                    class="read-more-icon"
+                                    className="read-more-icon"
                                     src={dropdownIcon}
                                     alt="Dropdown Icon"
                                     style={{ transform: expanded[index] ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}
@@ -76,7 +87,7 @@ const AnalysisPage = ({data}) => {
                         </div>
 
                         {expanded[index] && (
-                            <div class="summary" dangerouslySetInnerHTML={{ __html: summaries[index] }} />
+                            <div className="summary" dangerouslySetInnerHTML={{ __html: summaries[index] }} />
                         )}
                     </div>
                 ))}
