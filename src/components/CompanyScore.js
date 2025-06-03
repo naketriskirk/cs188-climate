@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './CompanyScore.css';
+import logo from '../logoWord.png';
 
 const CompanyScore = ({ setCurrentPage, setHistory, setAnalysisData, hasAutoAnalyzed, setHasAutoAnalyzed }) => {
   const [inputBrand, setInputBrand] = useState('');
@@ -67,11 +68,18 @@ const CompanyScore = ({ setCurrentPage, setHistory, setAnalysisData, hasAutoAnal
 
   return (
     <div className="content">
-      <div className="title">ESG Scores</div>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <div className="company-container">
+      <img src={logo} alt="Logo" className="logo" />
+      <form
+        className="company-container"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAnalyze(inputBrand);
+        }}
+        >
+                
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        
         <input
           type="text"
           placeholder="Enter a brand name"
@@ -79,11 +87,11 @@ const CompanyScore = ({ setCurrentPage, setHistory, setAnalysisData, hasAutoAnal
           onChange={(e) => setInputBrand(e.target.value)}
           className="search-bar"
         />
-      </div>
-
-      <button onClick={() => handleAnalyze(inputBrand)} className="analyze-button">
+      
+      <button type="submit" className="analyze-button">
         Analyze
       </button>
+      </form>
     </div>
   );
 };
