@@ -6,6 +6,10 @@ import AnalysisPage from './components/Analysis';
 
 function App() {
   const [pageTitle, setPageTitle] = React.useState('');
+  const [currentPage, setCurrentPage] = React.useState('score'); 
+  const [history, setHistory] = React.useState([]);
+  const [analysisData, setAnalysisData] = React.useState(null);
+  const [hasAutoAnalyzed, setHasAutoAnalyzed] = React.useState(false);
 
 React.useEffect(() => {
   if (window.chrome && chrome.tabs) {
@@ -19,9 +23,32 @@ React.useEffect(() => {
   }
 }, []);
 
+  const goBack = () => {
+    const prevPage = history[history.length - 1];
+    setCurrentPage(prevPage);
+    setHistory(prev => prev.slice(0, -1));
+  };
+
+
   return (
     <div className="App">
-      <CompanyScore />
+      {currentPage === 'score' && (
+        <CompanyScore 
+          setCurrentPage={setCurrentPage} 
+          setHistory={setHistory} 
+          setAnalysisData={setAnalysisData}
+          hasAutoAnalyzed={hasAutoAnalyzed}
+          setHasAutoAnalyzed={setHasAutoAnalyzed} 
+        />
+      )}
+
+      {currentPage === 'analysis' && (
+        <div>
+          <AnalysisPage 
+            data={analysisData}
+            goBack={goBack} />
+        </div>
+      )}
     </div>
   );
 }
