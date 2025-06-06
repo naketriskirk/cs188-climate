@@ -1,8 +1,7 @@
-# Interaction Flow
-1. When the user opens an e-commerce website, there will be a button on the top right that indicates the average sustainability score
-2. Clicking on the button, a popup opens with induvidual scores of different categories
-3. Under each category, the user can read more information on what led to the given score
-4. Clicking off of the pop up will close it, but the button will persistently remain on the screen
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5c4a601b-ee96-443b-b3f0-00608365c446" alt="POSTER v2" width="800"/>
+</p>
 
 
 # To Run
@@ -14,6 +13,13 @@ go to chrome://extensions/
 Turn on development mode, and click load unpacked, uploading the build folder from the cs188-climate repo
 
 Check out the extension from the extensions bar :)
+
+
+# Interaction Flow
+1. When the user opens an e-commerce website, there will be a button on the top right that indicates the average sustainability score
+2. Clicking on the button, a popup opens with induvidual scores of different categories
+3. Under each category, the user can read more information on what led to the given score
+4. Clicking off of the pop up will close it, but the button will persistently remain on the screen
 
 
 
